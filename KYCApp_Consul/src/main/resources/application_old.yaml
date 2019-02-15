@@ -1,0 +1,52 @@
+server:
+   port: 7070
+spring:
+    profiles:
+        active: dev
+    jackson:
+        serialization:
+            fail-on-empty-beans: false
+    datasource:
+        dataSourceClassName: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/boadb
+        databaseName:
+        serverName:
+        username: root
+        password: Srini@Boot
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+
+    jpa:
+        database-platform: org.hibernate.dialect.MySQL5Dialect
+        database: MYSQL
+        openInView: false
+        show_sql: true
+        generate-ddl: false
+        hibernate:
+            ddl-auto: update
+            naming-strategy: org.springframework.boot.orm.jpa.hibernate.SpringNamingStrategy
+        properties:
+                    hibernate.cache.use_second_level_cache: false
+                    hibernate.cache.use_query_cache: false
+                    hibernate.generate_statistics: true
+                    org.hibernate.envers.audit_table_suffix: _history
+
+http:
+    cache:
+        timeToLiveInDays: 31
+
+cache:
+    timeToLiveSeconds: 3600
+    ehcache:
+        maxBytesLocalHeap: 256M
+        
+management:
+   endpoint:
+      health:
+         show-details: always
+   endpoints:
+      web:
+         exposure:
+            include: "*"
